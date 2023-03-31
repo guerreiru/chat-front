@@ -1,0 +1,60 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  max-width: 920px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.listMessages {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.listMessages p{
+  word-break: break-all;
+}
+
+.cardMessage {
+  padding: 8px;
+  margin-bottom: 4px;
+  width: fit-content;
+  border-radius: 8px;
+}
+
+.cardMessageSender {
+  background-color: #afe6f8;
+}
+
+.cardMessageRecipient {
+  background-color: #26c0f3;
+}
+
+.inputSendMessage {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 8px
+}
+
+.inputSendMessage textarea {
+  flex: 1;
+  resize: none;
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 18px;
+  color: #333;
+}
