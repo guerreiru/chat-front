@@ -10,7 +10,7 @@ interface IMessage {
   text: string;
   authorId: string;
   author: string | "";
-  messageId: string
+  messageId: string;
 }
 
 export function Chat({ socket }: IChatProps) {
@@ -27,6 +27,27 @@ export function Chat({ socket }: IChatProps) {
     };
   }, [socket]);
 
+  useEffect(() => {
+    messageRef.current?.addEventListener("keyup", handleAutoResizeTextArea);
+
+    return () =>
+      messageRef.current?.removeEventListener(
+        "keyup",
+        handleAutoResizeTextArea
+      );
+  }, []);
+
+  const handleAutoResizeTextArea = (event: KeyboardEvent) => {
+    const target = event.target as HTMLElement;
+
+    target.style.height = "54px";
+    
+    if (target.scrollHeight > 54) {
+      target.style.height = `${target.scrollHeight}px`;
+      return;
+    }
+  };
+
   const handleClearInput = () => {
     if (messageRef.current) {
       messageRef.current.value = "";
@@ -41,6 +62,7 @@ export function Chat({ socket }: IChatProps) {
 
     socket?.emit("message", message);
     handleClearInput();
+    messageRef.current?.focus();
   };
 
   const handleIsSender = (authorId: String) => {
@@ -52,18 +74,21 @@ export function Chat({ socket }: IChatProps) {
   return (
     <div className={styles.container}>
       <h1>Chat</h1>
-      <div className={styles.listMessages}>
-        {messageList.map((message) => (
-          <div
-            key={message.messageId}
-            className={`${styles.cardMessage} ${handleIsSender(message.authorId)}`}
-            style={{alignSelf: `${socket?.id === message.authorId ? 'flex-start' : 'flex-end'}`}}
-          >
-            <p>
-              {message.author}: {message.text}
-            </p>
-          </div>
-        ))}
+      <div className={styles.listMessagesWrapper}>
+        <div className={styles.listMessages}>
+          {messageList.map((message) => (
+            <div
+              key={message.messageId}
+              className={`${styles.cardMessage} ${handleIsSender(
+                message.authorId
+              )}`}
+            >
+              <p>
+                {message.author}: {message.text}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
       <div className={styles.inputSendMessage}>
         <textarea ref={messageRef}></textarea>

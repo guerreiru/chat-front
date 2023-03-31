@@ -7,21 +7,28 @@
   margin: 0 auto;
 }
 
-.listMessages {
-  padding: 16px;
+.listMessagesWrapper {
+  padding: 16px 0 16px 16px;
   background: rgba(255, 255, 255, 0.2);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  overflow: hidden;
 }
 
-.listMessages p{
+.listMessages {
+  overflow: auto;
+  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.listMessages p {
   word-break: break-all;
 }
 
@@ -33,11 +40,14 @@
 }
 
 .cardMessageSender {
-  background-color: #afe6f8;
+  background-color: #6ea6b9;
+  color: #f4f4f4;
+  align-self: flex-start;
 }
 
 .cardMessageRecipient {
   background-color: #26c0f3;
+  align-self: flex-end;
 }
 
 .inputSendMessage {
@@ -45,16 +55,19 @@
   align-items: flex-end;
   gap: 4px;
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 8px
+  padding: 8px;
 }
 
 .inputSendMessage textarea {
   flex: 1;
   resize: none;
-  padding: 8px;
   border: none;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 8px;
   outline: none;
   font-size: 18px;
   color: #333;
+  height: 54px;
+  max-height: 160px;
 }
