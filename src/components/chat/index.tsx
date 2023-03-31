@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Socket } from "socket.io-client";
 import styles from "./chat.module.css";
+import { PaperPlaneRight } from "@phosphor-icons/react";
 
 interface IChatProps {
   socket: Socket | null;
@@ -73,7 +74,6 @@ export function Chat({ socket }: IChatProps) {
 
   return (
     <div className={styles.container}>
-      <h1>Chat</h1>
       <div className={styles.listMessagesWrapper}>
         <div className={styles.listMessages}>
           {messageList.map((message) => (
@@ -92,9 +92,7 @@ export function Chat({ socket }: IChatProps) {
       </div>
       <div className={styles.inputSendMessage}>
         <textarea ref={messageRef}></textarea>
-        <button className="btn" onClick={handleSubmit}>
-          Enviar
-        </button>
+        <PaperPlaneRight className={styles.sendButton} size={32} weight="fill" onClick={handleSubmit} color="#333" />
       </div>
     </div>
   );

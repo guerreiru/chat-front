@@ -18,6 +18,7 @@ body {
     hsl(198deg 82% 97%) 86%,
     hsl(0deg 0% 100%) 100%
   );
+  background-repeat: no-repeat;
   color: #333;
 }
 
