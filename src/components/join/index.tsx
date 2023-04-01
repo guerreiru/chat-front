@@ -18,7 +18,7 @@ export function Join({ setChatVisibility, setSocket }: IJoinProps) {
       return;
     }
 
-    const socket = await io('https://chat-realtime-server.onrender.com:3333');
+    const socket = await io('https://chat-realtime-server.onrender.com');
     socket.emit('set_username', userName);
     setSocket(socket);
     setChatVisibility();
