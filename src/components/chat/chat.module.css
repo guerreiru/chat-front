@@ -10,9 +10,8 @@
 
 .listMessagesWrapper {
   padding: 16px 0 16px 16px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -52,7 +51,7 @@
   display: flex;
   align-items: flex-end;
   gap: 4px;
-  background-color: rgba(132, 217, 245, 0.7);
+  background-color: rgba(33, 33, 33, 0.8);
   padding: 8px;
 }
 
@@ -60,12 +59,12 @@
   flex: 1;
   resize: none;
   border: none;
-  background-color: rgba(132, 217, 245, 0.9);
+  background-color: rgba(77, 77, 77, 0.1);
   padding: 8px;
   border-radius: 8px;
   outline: none;
   font-size: 18px;
-  color: #333;
+  color: white;
   height: 54px;
   max-height: 160px;
 }

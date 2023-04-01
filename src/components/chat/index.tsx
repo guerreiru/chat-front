@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from "react";
-import { Socket } from "socket.io-client";
-import styles from "./chat.module.css";
-import { PaperPlaneRight } from "@phosphor-icons/react";
+import { useRef, useState, useEffect } from 'react';
+import { Socket } from 'socket.io-client';
+import styles from './chat.module.css';
+import { PaperPlaneRight } from '@phosphor-icons/react';
 
 interface IChatProps {
   socket: Socket | null;
@@ -10,7 +10,7 @@ interface IChatProps {
 interface IMessage {
   text: string;
   authorId: string;
-  author: string | "";
+  author: string | '';
   messageId: string;
 }
 
@@ -19,21 +19,21 @@ export function Chat({ socket }: IChatProps) {
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    socket?.on("received_message", (data) => {
+    socket?.on('received_message', (data) => {
       setMessageList((prev) => [...prev, data]);
     });
 
     return () => {
-      socket?.off("received_message");
+      socket?.off('received_message');
     };
   }, [socket]);
 
   useEffect(() => {
-    messageRef.current?.addEventListener("keyup", handleAutoResizeTextArea);
+    messageRef.current?.addEventListener('keyup', handleAutoResizeTextArea);
 
     return () =>
       messageRef.current?.removeEventListener(
-        "keyup",
+        'keyup',
         handleAutoResizeTextArea
       );
   }, []);
@@ -41,8 +41,8 @@ export function Chat({ socket }: IChatProps) {
   const handleAutoResizeTextArea = (event: KeyboardEvent) => {
     const target = event.target as HTMLElement;
 
-    target.style.height = "54px";
-    
+    target.style.height = '54px';
+
     if (target.scrollHeight > 54) {
       target.style.height = `${target.scrollHeight}px`;
       return;
@@ -51,7 +51,7 @@ export function Chat({ socket }: IChatProps) {
 
   const handleClearInput = () => {
     if (messageRef.current) {
-      messageRef.current.value = "";
+      messageRef.current.value = '';
     }
   };
 
@@ -61,7 +61,7 @@ export function Chat({ socket }: IChatProps) {
       return;
     }
 
-    socket?.emit("message", message);
+    socket?.emit('message', message);
     handleClearInput();
     messageRef.current?.focus();
   };
@@ -92,7 +92,13 @@ export function Chat({ socket }: IChatProps) {
       </div>
       <div className={styles.inputSendMessage}>
         <textarea ref={messageRef}></textarea>
-        <PaperPlaneRight className={styles.sendButton} size={32} weight="fill" onClick={handleSubmit} color="#333" />
+        <PaperPlaneRight
+          className={styles.sendButton}
+          size={32}
+          weight='fill'
+          onClick={handleSubmit}
+          color='#fff'
+        />
       </div>
     </div>
   );
